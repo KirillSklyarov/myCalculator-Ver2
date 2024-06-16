@@ -15,7 +15,14 @@ final class MainPresenter: MainPresenterProtocol {
 
     weak var view: MainViewControllerProtocol?
 
-    var firstNumberToCalc: Double = 0.0
+    var firstNumberToCalc: Double = 0.0 {
+        didSet {
+            let toShow = String(firstNumberToCalc)
+            print("toShow \(toShow)")
+            view?.updateUI(text: toShow)
+        }
+    }
+
     var secondNumberToCalc: Double = 0.0
 
     var firstEnter: String = "" {
@@ -24,18 +31,11 @@ final class MainPresenter: MainPresenterProtocol {
         }
     }
 
-    var show = 0.0 {
-        didSet {
-            let toShow = String(show)
-            view?.updateUI(text: toShow)
-        }
-    }
-
     var operation: Operation = .noAction
 
     func defaultButtonTapped(labelText: String) {
         switch labelText {
-        case "AC": 
+        case "AC":
             firstEnter = ""
             firstNumberToCalc = 0
             secondNumberToCalc = 0
@@ -52,30 +52,30 @@ final class MainPresenter: MainPresenterProtocol {
             showResult()
             operation = .addition
         case "=":
-            secondNumberToCalc = Double(firstEnter)!
-            show = calculation()
+            showResult()
+            operation = .noAction
         case "+/-":
-            if Double(firstEnter)! < 0 {
-                let new = firstEnter.dropFirst()
-                firstEnter = String(new)
-            } else {
-                firstEnter = "-"+firstEnter
+            operation = .negative
+            showResult()
+        case "%":
+            operation = .percent
+            showResult()
+        case ".":
+            if !firstEnter.contains(".") {
+                firstEnter += labelText
             }
-            print(firstEnter)
         default: firstEnter += labelText
         }
     }
 
     func showResult() {
         if firstNumberToCalc == 0 {
-            firstNumberToCalc = Double(firstEnter)!
+            firstNumberToCalc = Double(firstEnter) ?? 0.0
         } else {
-            secondNumberToCalc = Double(firstEnter)!
+            secondNumberToCalc = Double(firstEnter) ?? 0.0
         }
         firstEnter = "0"
-        print("firstEnter \(firstEnter),  firstNumber \(firstNumberToCalc), secondNumber \(secondNumberToCalc), operation \(operation)")
         firstNumberToCalc = calculation()
-        show = firstNumberToCalc
     }
 
     func calculation() -> Double {
@@ -88,6 +88,8 @@ final class MainPresenter: MainPresenterProtocol {
         case .multiply: return firstNumberToCalc * secondNumberToCalc
         case .subtraction: return firstNumberToCalc - secondNumberToCalc
         case .noAction: return firstNumberToCalc
+        case .percent: operation = .noAction; return firstNumberToCalc / 100
+        case .negative: operation = .noAction; return firstNumberToCalc * -1
         }
     }
 }

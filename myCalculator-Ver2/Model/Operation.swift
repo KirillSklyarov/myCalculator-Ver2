@@ -13,4 +13,6 @@ enum Operation {
     case multiply
     case division
     case noAction
+    case percent
+    case negative
 }

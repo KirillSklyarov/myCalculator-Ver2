@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
         textField.text = "0"
         textField.textAlignment = .right
         textField.textColor = .white
-        textField.font = .systemFont(ofSize: 50)
+        textField.font = .systemFont(ofSize: 60)
         textField.delegate = self
 
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
@@ -83,12 +83,12 @@ final class MainViewController: UIViewController {
 
     // MARK: - Private methods
     func updateUI(text: String) {
-        guard let textDouble = Double(text) else {
+        guard let textDouble = Double(text) else { print("pzdc");
             operationTextField.text = "0"; return }
+        print("textDouble \(textDouble)")
 
         let isResultInt = textDouble.truncatingRemainder(dividingBy: 1) == 0
-
-        operationTextField.text = isResultInt ? "\(Int(textDouble))" : "\(textDouble)"
+        operationTextField.text = isResultInt ? NumberFormatter.appFormatter.string(for: Int(textDouble)) : NumberFormatter.appFormatter.string(for: textDouble)
 
     }
 

@@ -17,6 +17,7 @@
 		730396392C1ED0FD00318F6F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730396382C1ED0FD00318F6F /* Constants.swift */; };
 		7303963B2C1ED8A700318F6F /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7303963A2C1ED8A700318F6F /* MainPresenter.swift */; };
 		7303963D2C1ED8E000318F6F /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7303963C2C1ED8E000318F6F /* Operation.swift */; };
+		7303963F2C1EFCD500318F6F /* NumberFormatter+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7303963E2C1EFCD500318F6F /* NumberFormatter+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		730396382C1ED0FD00318F6F /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		7303963A2C1ED8A700318F6F /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		7303963C2C1ED8E000318F6F /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		7303963E2C1EFCD500318F6F /* NumberFormatter+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NumberFormatter+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				730396332C1ECF6700318F6F /* UIViewC+Ext.swift */,
+				7303963E2C1EFCD500318F6F /* NumberFormatter+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				7303961F2C1ECCBD00318F6F /* ViewController.swift in Sources */,
 				7303961B2C1ECCBD00318F6F /* AppDelegate.swift in Sources */,
 				7303963D2C1ED8E000318F6F /* Operation.swift in Sources */,
+				7303963F2C1EFCD500318F6F /* NumberFormatter+Ext.swift in Sources */,
 				730396362C1ECFD600318F6F /* Color.swift in Sources */,
 				7303961D2C1ECCBD00318F6F /* SceneDelegate.swift in Sources */,
 				7303963B2C1ED8A700318F6F /* MainPresenter.swift in Sources */,
