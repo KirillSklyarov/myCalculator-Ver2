@@ -20,7 +20,7 @@ final class MainViewController: UIViewController {
         textField.textAlignment = .right
         textField.textColor = .white
         textField.font = .systemFont(ofSize: 60)
-        textField.delegate = self
+        textField.isEnabled = false
 
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 15, height: textField.frame.height))
         textField.rightView = paddingView
@@ -64,11 +64,11 @@ final class MainViewController: UIViewController {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Life cycles
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,17 +82,6 @@ final class MainViewController: UIViewController {
     }
 
     // MARK: - Private methods
-    func updateUI(text: String) {
-        guard let textDouble = Double(text) else { print("pzdc");
-            operationTextField.text = "0"; return }
-        print("textDouble \(textDouble)")
-
-        let isResultInt = textDouble.truncatingRemainder(dividingBy: 1) == 0
-        operationTextField.text = isResultInt ? NumberFormatter.appFormatter.string(for: Int(textDouble)) : NumberFormatter.appFormatter.string(for: textDouble)
-
-    }
-
-
     private func createButton(title: String, color: Color, action: Selector = #selector(defaultAction)) -> UIButton {
         return super.setupButton(title: title, color: color, action: action)
     }
@@ -115,12 +104,14 @@ final class MainViewController: UIViewController {
     }
 }
 
-// MARK: - UITextFieldDelegate
-extension MainViewController: UITextFieldDelegate {
-
-}
-
 // MARK: - MainViewControllerProtocol
 extension MainViewController: MainViewControllerProtocol {
+    func updateUI(text: String) {
+        guard let textDouble = Double(text) else { print("pzdc");
+            operationTextField.text = "0"; return }
+        print("textDouble \(textDouble)")
 
+        let isResultInt = textDouble.truncatingRemainder(dividingBy: 1) == 0
+        operationTextField.text = isResultInt ? NumberFormatter.appFormatter.string(for: Int(textDouble)) : NumberFormatter.appFormatter.string(for: textDouble)
+    }
 }
